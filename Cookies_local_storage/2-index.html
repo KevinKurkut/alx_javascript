@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookies</title>
+    <script>
+        function setCookies() {
+    const firstname = document.getElementById('firstname').value;
+    const email = document.getElementById('email').value;
+
+    // expiration
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 10);
+    }
+   
+    // read cookie
+    function getCookie(name) {
+        let cookies = document.cookie.split("; ");
+        for (let i = 0; i < cookies.length; i++) {
+          let cookie = cookies[i];
+          if (cookie.startsWith(name + "=")) {
+            return cookie.split("=")[1];
+          }
+        }
+        return "";    
+    }
+    function showCookies() {
+        let firstname = getCookie("firstname");
+        let email = getCookie("email");
+        let paragraph = document.createElement('p');
+        paragraph.innerHTML = 'Email: ${email} - Firstname: ${firstname}';
+        document.body.appendChild(paragraph);
+    }
+    // 
+    </script>
+</head>
+<body>
+    <h1>Log to the website</h1>
+    <form>
+        <div class="inputs">
+            <input type="text" id="firstname" name="firstname" placeholder="Firstname">
+            <input type="email" id="email" name="email" placeholder="Email">
+            <button type="button" onclick="setCookies()">Log me in</button>
+        </div>
+        <h1 id="cookies">Cookies</h1>
+        <button type="button" onclick="showCookies()">Show the cookies</button>
+    </form>
+</body>
+</html>
