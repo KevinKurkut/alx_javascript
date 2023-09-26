@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creating and Removing Elements</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    const selectContainer = document.getElementById('container');
+    const para = document.createElement('P');
+    para.textContent = 'New paragraph';
+    selectContainer.appendChild(para);
+
+    const btn = document.createElement('button');
+    btn.id = 'togglebtn';
+    btn.textContent = 'TOGGLE';
+    selectContainer.appendChild(btn);
+    // You can add many event handlers to one element.
+    function hide() {
+        // check if it is none
+        if (para.style.display !== 'none') {
+            // sets to none
+            para.style.display = 'none';
+        } else {
+            // show element
+            para.style.display = 'block';
+        }
+    }
+    // You can add many event handlers to one element.
+    document.getElementById('togglebtn').addEventListener('click', hide);
+  </script>
+</body>
+</html>
