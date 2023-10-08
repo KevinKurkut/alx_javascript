@@ -1,15 +1,18 @@
-#!/usr/bin/node
-const request =require('request');
-request(process.argv[2], function (error, response, body) {
-    if (error) {
-        console.log(error);
-    } else if (response.statusCode === 200) {
-        const js_object = JSON.parse(body).results;
-        const characterId = '18';
-        const wedgeAntilles = js_object.filter(counter=>{
-            return counter.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`);
-        })
-    } else {
-        console.log('code:' +response.statusCode);
-    }
+const request = require('request');
+
+const url = "https://swapi-api.alx-tools.com/api/films/";
+
+request.get(url, function(error, response, body) {
+  if (error) {
+    console.error(`Error: ${error}`);
+    return;
+  }
+  if (response.statusCode !== 200) {
+    console.error(`Status: ${response.statusCode}`);
+    return;
+  }
+
+  const data = JSON.parse(body);
+  const wedgeAntillesFilms = data.results.filter(film => film.characters.includes("18"));
+  console.log(wedgeAntillesFilms.length);
 });
