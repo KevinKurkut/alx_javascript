@@ -14,9 +14,7 @@ request.get(url, function(error, response, body) {
   }
   // script that prints the number of movies where the character “Wedge Antilles” is present
   const films= JSON.parse(body).results;
-  const characterId = "18"; // Wedge Antilles character ID
-  const wedgeAntillesFilms = films.filter(film => film.characters.includes(`${url}+/+${characterId}/`));
-
-  console.log(wedgeAntillesFilms.length)
-
+  const id = "18";
+  const wedgeFilms = films.filter(film => film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${id}/`));
+  console.log(wedgeFilms.length)
 });
