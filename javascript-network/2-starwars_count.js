@@ -1,7 +1,7 @@
-const { type } = require('express/lib/response');
+
 const request = require('request');
 
-const url = "https://swapi-api.alx-tools.com/api/films/";
+const url = process.argv[2];
 
 request.get(url, function(error, response, body) {
   if (error) {
