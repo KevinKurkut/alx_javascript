@@ -1,3 +1,4 @@
+const { type } = require('express/lib/response');
 const request = require('request');
 
 const url = "https://swapi-api.alx-tools.com/api/films/";
@@ -13,6 +14,8 @@ request.get(url, function(error, response, body) {
   }
 
   const data = JSON.parse(body);
-  const wedgeAntillesFilms = data.results.filter(film => film.characters.includes("18"));
+  const films = data.results;
+  const characterId = "18";
+  const wedgeAntillesFilms = films.filter(film => film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`));
   console.log(wedgeAntillesFilms.length);
 });
