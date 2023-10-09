@@ -1,7 +1,7 @@
-const request = require('request')
-const fs = require('fs')
-request(process.argv[2], function(error, response, body) {
-    if (error == null){
-        fs.writeFileSync(process.argv[3].body)
-    }
-});
+const request = require('request');
+
+const fs = require('fs');
+
+const url = process.argv[2];
+
+request.get(url).pipe(fs.createReadStream('loripsum.html'))
