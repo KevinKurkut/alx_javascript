@@ -1,26 +1,22 @@
-#!/usr/bin/node
-const request = require('request');
+const request = require('request')
+ 
+// Request URL
+url = process.argv[2];
+ 
+request(url, (error, response, body) => {
+    // Printing the error if occurred
+    if (error) console.log(error)
 
-const url = process.argv[2];
-request.get(url, function(error, response, body) {
-  if (error) {
-    console.error(`Error: ${error}`);
-    return;
-  }
-  if (response.statusCode !== 200) {
-    console.error(`Status: ${response.statusCode}`);
-    return;
-  }
-  // script that prints the number of movies where the character “Wedge Antilles” is present
-  const films= JSON.parse(body).results;
-  const id = "18";
-  let count = 0;
-
-  // Iterate through the films
-  for (const film of films) {
-    if (film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${id}/`)) {
-      count++;
+    const films = JSON.parse(body).results;
+    let n =0;
+    for(const x of films){
+      const filmChar = x.characters;
+      for(const z of filmChar){
+        if(z.includes('18')){
+          n++;
+        }
+      }
     }
-  }
-  console.log(count)
+
+    console.log(n);
 });
